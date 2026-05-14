@@ -4,10 +4,8 @@
     --bg-image: url('assets/background.png');
     --paper-white: #fdfdfd;
     --accent-sage: #8e9775;
-    --accent-terracotta: #d4a373;
-    --accent-cream: #faedcd;
-    --button-dark: #1a1a1a;
     --button-red: #cc2b2b;
+    --text-dark: #3d405b;
 }
 
 * {
@@ -26,69 +24,52 @@ body {
 .board-container {
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.1)), var(--bg-image);
+    background-image: linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.1)), var(--bg-image);
     background-size: cover;
     background-position: center;
     position: relative;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 header {
     text-align: center;
-    width: 100%;
-    padding: 2rem 1rem;
+    padding: 2.5rem 1rem;
     z-index: 50;
 }
 
 header h1 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: #3d405b;
-    margin-bottom: 0.2rem;
-    letter-spacing: -1px;
-}
-
-header h1 .accent {
-    color: var(--accent-sage);
+    color: var(--text-dark);
+    letter-spacing: -0.5px;
 }
 
 header p {
-    font-size: 0.8rem;
-    color: #818181;
-    font-weight: 600;
+    font-size: 0.7rem;
+    color: #888;
     letter-spacing: 2px;
     text-transform: uppercase;
+    margin-top: 5px;
 }
 
 .notes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 5rem 3rem;
-    width: 100%;
-    max-width: 1400px;
-    padding: 1rem 2rem 250px 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 4rem 2rem;
+    padding: 1rem 2rem 280px 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Note style exactly as image */
+/* Notes paper look */
 .note {
     background: #fff;
-    padding: 2.5rem 2rem 1.5rem 2rem;
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
     position: relative;
-    box-shadow: 2px 10px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease;
-    border-radius: 2px;
-}
-
-.note::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    opacity: 0.05;
-    pointer-events: none;
+    box-shadow: 2px 8px 15px rgba(0,0,0,0.1);
+    border-radius: 1px;
 }
 
 .tape {
@@ -96,10 +77,9 @@ header p {
     top: -15px;
     left: 50%;
     transform: translateX(-50%) rotate(-1deg);
-    width: 100px;
+    width: 90px;
     height: 35px;
     opacity: 0.8;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .note-yellow .tape { background: repeating-linear-gradient(45deg, #e9edc9 0, #e9edc9 10px, #ccd5ae 10px, #ccd5ae 20px); }
@@ -109,61 +89,105 @@ header p {
 
 .note-text {
     font-family: 'Kalam', cursive;
-    font-size: 1.5rem;
-    color: #333;
+    font-size: 1.4rem;
+    color: #444;
     text-align: center;
-    line-height: 1.3;
 }
 
-.delete-btn {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: transparent;
-    border: none;
-    color: #eee;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.note:hover .delete-btn { color: #ccc; }
-.delete-btn:hover { color: #e76f51 !important; }
-
-/* Control Center inspired by the mockup */
+/* FOOTER DASHBOARD EXACTLY AS IMAGE */
 .footer-controls {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
-    padding: 20px 0;
+    height: 240px;
+    background: linear-gradient(to top, rgba(0,0,0,0.1), transparent);
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 20px;
     z-index: 100;
 }
 
 .main-controls-row {
     display: flex;
     align-items: center;
-    gap: 40px;
-    margin-bottom: 20px;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
 }
 
+/* THE 3D PHYSICAL BUTTON */
+.mic-button {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    background: #111;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 
+        0 10px 30px rgba(0,0,0,0.5),
+        inset 0 4px 10px rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mic-button::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: #222;
+    box-shadow: inset 0 -4px 6px rgba(255,255,255,0.1);
+}
+
+.mic-button::after {
+    content: "RECORD\nNOTE";
+    position: absolute;
+    inset: 12px;
+    background: radial-gradient(circle at 30% 30%, #e74c3c, #c0392b);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    white-space: pre-line;
+    box-shadow: 
+        inset 0 2px 4px rgba(255,255,255,0.4),
+        0 4px 8px rgba(0,0,0,0.4);
+}
+
+.mic-button:active::after {
+    transform: scale(0.95);
+    background: #c0392b;
+}
+
+.mic-button.recording::after {
+    background: radial-gradient(circle at 30% 30%, #ff5e5e, #e74c3c);
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.6), inset 0 2px 4px rgba(255,255,255,0.5);
+    animation: buttonGlow 1s infinite alternate;
+}
+
+/* OPTIONS TO THE RIGHT */
 .side-options {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
 }
 
 .option-item {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: #3d405b;
-    font-weight: 700;
+    gap: 10px;
+    color: #444;
+    font-weight: 600;
     font-size: 13px;
     text-transform: uppercase;
     cursor: pointer;
@@ -172,70 +196,15 @@ header p {
 
 .option-item:hover { opacity: 0.7; }
 
-/* The BIG RED BUTTON */
-.mic-button {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: #111;
-    border: 8px solid #333;
-    box-shadow: 
-        0 10px 20px rgba(0,0,0,0.3),
-        inset 0 2px 5px rgba(255,255,255,0.2);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    transition: all 0.2s;
-}
-
-.mic-button::after {
-    content: "RECORD\nNOTE";
-    position: absolute;
-    inset: 10px;
-    background: #cc2b2b;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 10px;
-    font-weight: 800;
-    color: white;
-    line-height: 1;
-    box-shadow: inset 0 5px 10px rgba(255,255,255,0.3), inset 0 -5px 10px rgba(0,0,0,0.3);
-    white-space: pre-line;
-}
-
-.mic-button:active { transform: scale(0.95); }
-
-.mic-button.recording::after {
-    background: #ff3b3b;
-    box-shadow: 0 0 20px #ff3b3b, inset 0 5px 10px rgba(255,255,255,0.4);
-    animation: glowPulse 1s infinite alternate;
-}
-
-.pulse-ring {
-    position: absolute;
-    inset: -10px;
-    border-radius: 50%;
-    border: 2px solid #ff3b3b;
-    opacity: 0;
-}
-
-.mic-button.recording .pulse-ring {
-    animation: ringSpread 2s infinite ease-out;
-}
-
-/* Bottom Nav */
+/* BOTTOM NAV BAR */
 .bottom-nav {
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 50px;
     width: 100%;
+    max-width: 500px;
     padding-top: 15px;
-    border-top: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 .nav-item {
@@ -243,23 +212,22 @@ header p {
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    color: #888;
-    font-size: 10px;
+    color: #777;
+    font-size: 9px;
     font-weight: 700;
     text-transform: uppercase;
     cursor: pointer;
 }
 
-.nav-item.active { color: #333; }
+.nav-item.active { color: #222; }
 
-/* Overlay Status */
+/* Status Overlay */
 .status-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.85);
     backdrop-filter: blur(10px);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 200;
@@ -267,18 +235,14 @@ header p {
 
 .status-overlay.hidden { display: none; }
 
-@keyframes glowPulse {
-    from { opacity: 0.8; }
-    to { opacity: 1; filter: brightness(1.2); }
-}
-
-@keyframes ringSpread {
-    0% { transform: scale(1); opacity: 0.5; }
-    100% { transform: scale(1.6); opacity: 0; }
+@keyframes buttonGlow {
+    from { filter: brightness(1); }
+    to { filter: brightness(1.3); }
 }
 
 @media (max-width: 600px) {
-    .main-controls-row { gap: 20px; }
+    .footer-controls { height: 260px; }
+    .main-controls-row { gap: 15px; }
     .bottom-nav { gap: 30px; }
-    .side-options { display: none; }
+    .nav-item { font-size: 8px; }
 }
