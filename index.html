@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#2c1e12">
+    <title>Pense-Bête Vocal - Notes Intelligentes</title>
+    <meta name="description" content="Capturez vos idées instantanément par la voix. Vos notes transformées en post-its colorés sur un tableau virtuel.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="board-container" id="board">
+        <header>
+            <h1>Pense-Bête <span class="accent">Vocal</span></h1>
+            <p>Appuyez sur le micro et parlez...</p>
+        </header>
+
+        <div class="notes-grid" id="notesGrid">
+            <!-- Notes will be injected here -->
+        </div>
+
+        <div class="controls">
+            <button id="exportBtn" class="action-btn" title="Sauvegarder les notes">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+            </button>
+
+            <button id="micBtn" class="mic-button" title="Enregistrer une note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mic-icon">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                </svg>
+                <div class="pulse-ring"></div>
+            </button>
+
+            <button id="importBtn" class="action-btn" title="Restaurer les notes">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="action-icon">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+            </button>
+            <input type="file" id="fileInput" accept=".json" style="display: none;">
+        </div>
+
+        <div id="statusOverlay" class="status-overlay hidden">
+            <div class="status-content">
+                <div class="recording-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <p id="statusText">Écoute en cours...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
