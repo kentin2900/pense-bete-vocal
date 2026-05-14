@@ -144,8 +144,7 @@ header p {
     box-shadow: inset 0 -4px 6px rgba(255,255,255,0.1);
 }
 
-.mic-button::after {
-    content: "RECORD\nNOTE";
+.mic-text {
     position: absolute;
     inset: 12px;
     background: radial-gradient(circle at 30% 30%, #e74c3c, #c0392b);
@@ -158,18 +157,19 @@ header p {
     font-weight: 800;
     color: white;
     line-height: 1.1;
-    white-space: pre-line;
     box-shadow: 
         inset 0 2px 4px rgba(255,255,255,0.4),
         0 4px 8px rgba(0,0,0,0.4);
+    z-index: 2;
+    transition: all 0.2s;
 }
 
-.mic-button:active::after {
+.mic-button:active .mic-text {
     transform: scale(0.95);
     background: #c0392b;
 }
 
-.mic-button.recording::after {
+.mic-button.recording .mic-text {
     background: radial-gradient(circle at 30% 30%, #ff5e5e, #e74c3c);
     box-shadow: 0 0 20px rgba(231, 76, 60, 0.6), inset 0 2px 4px rgba(255,255,255,0.5);
     animation: buttonGlow 1s infinite alternate;
